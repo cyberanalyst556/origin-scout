@@ -1,190 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="BVSC24u8h4MFB9x7a1JPlFTdV4aKf28UZocbnnr-RQ4" />
-    <title>Origin Scout | Transparent Product Sourcing</title>
-    <link rel="icon" type="image/x-icon" href="/favico.png">
+    <title>Origin Scout | Open Source Product Transparency</title>
+    <meta name="description" content="Instantly identify product origins and confidence levels while you shop.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        
-        body { font-family: 'Inter', sans-serif; background-color: #1f2535; color: #f8fafc; scroll-behavior: smooth; }
-        .hero-gradient { background: radial-gradient(circle at top, #2d364d 0%, #1f2535 100%); }
-        .feature-card { background-color: #2d364d; border: 1px solid #475569; transition: all 0.3s ease; }
-        .feature-card:hover { transform: translateY(-4px); border-color: #3b82f6; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3); }
-        details { background-color: #2d364d; border: 1px solid #475569; }
-        details > summary { list-style: none; }
-        details > summary::-webkit-details-marker { display: none; }
-        
-        .title-image-container { display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; margin-bottom: 2rem; }
-        
-        /* Significantly larger image size for the hero section */
-        .title-image { width: 320px; height: auto; border-radius: 20px; }
-        
-        @media (max-width: 768px) {
-            .title-image { width: 220px; }
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0f172a; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .hero-glow { background: radial-gradient(circle at 50% -20%, #3b82f633 0%, transparent 70%); }
     </style>
 </head>
-<body class="antialiased">
+<body class="text-slate-200 antialiased hero-glow">
 
-    <nav class="flex justify-center items-center px-8 py-8 max-w-7xl mx-auto sticky top-0 bg-[#1f2535]/80 backdrop-blur-md z-50">
-        <div class="flex gap-10">
-            <a href="#usa" class="font-semibold text-slate-300 hover:text-blue-400 tracking-wide transition uppercase text-sm">USA Edition</a>
-            <a href="#global" class="font-semibold text-slate-300 hover:text-blue-400 tracking-wide transition uppercase text-sm">Global Edition</a>
-            <a href="#confidence" class="font-semibold text-slate-300 hover:text-blue-400 tracking-wide transition uppercase text-sm">Confidence</a>
-            <a href="#faq" class="font-semibold text-slate-300 hover:text-blue-400 tracking-wide transition uppercase text-sm">FAQ</a>
+    <nav class="fixed w-full z-50 top-0 px-4 py-4 md:px-6">
+        <div class="max-w-6xl mx-auto glass rounded-2xl px-4 py-3 md:px-6 flex justify-between items-center text-center">
+            <div class="flex items-center gap-2">
+                <img src="favico.png" alt="Logo" class="w-8 h-8">
+                <span class="font-extrabold tracking-tighter text-xl text-white">ORIGIN SCOUT</span>
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-semibold uppercase tracking-wider">
+                <a href="#features" class="hover:text-blue-400 transition">Features</a>
+                <a href="#editions" class="hover:text-blue-400 transition">Editions</a>
+                <a href="https://github.com" class="hover:text-blue-400 transition"><i class="fab fa-github mr-1"></i> Source</a>
+            </div>
+            <a href="#editions" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 md:px-5 md:py-2 rounded-xl text-xs md:text-sm font-bold transition shadow-lg shadow-blue-600/20">
+                Install
+            </a>
         </div>
     </nav>
 
-    <header class="hero-gradient text-center py-32 px-4">
-        <div class="max-w-5xl mx-auto flex flex-col items-center">
-            <div class="title-image-container">
-                <img src="blurredpromo.png" alt="Transparency Magnifier and Cart" class="title-image shadow-1xl">
-                <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                    Origin Scout - Shop with Transparency
-                </h1>
+    <header class="pt-32 md:pt-40 pb-20 px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] md:text-xs font-bold mb-6 uppercase tracking-widest">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                </span>
+                Version 2026.3
             </div>
-            <p class="text-slate-300 text-xl mb-6 leading-relaxed max-w-2xl">
-                Instantly identify where products are made while you browse. Our extension surfaces 
-                origin data and confidence levels directly on your favorite shopping sites.
+            <h1 class="text-4xl md:text-7xl font-extrabold text-white mb-8 tracking-tight">
+                Shop with <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">Total Transparency</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed max-w-2xl mx-auto">
+                Stop guessing where your products come from. Origin Scout identifies manufacturing origins and provides data-driven confidence scores.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 mt-10">
-                <a href="#usa" class="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-500 transition shadow-lg shadow-blue-600/20">
-                    Explore Editions
-                </a>
+            
+            <div class="relative group max-w-3xl mx-auto">
+                <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                <img src="marquee.jpg" alt="Origin Scout Preview" class="relative rounded-2xl shadow-2xl border border-white/10">
             </div>
         </div>
     </header>
 
-    <section id="usa" class="py-24 max-w-7xl mx-auto px-6 border-t border-slate-700/50">
-        <div class="flex flex-col md:flex-row gap-16 items-center">
-            <div class="flex-1">
-                <div class="inline-block bg-blue-900/40 text-blue-300 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-widest border border-blue-700/50">Localized for USA</div>
-                <h2 class="text-4xl font-bold mb-6 text-white">Origin Scout: USA Edition</h2>
-                <p class="text-slate-300 text-lg mb-8 leading-relaxed">
-                    Designed specifically for the domestic shopper. Effortlessly identify "Made in USA" 
-                    products on major platforms like Amazon, Walmart, and Target.
-                </p>
-                <ul class="space-y-4 mb-10">
-                    <li class="flex items-center text-slate-200"><i class="fas fa-check-circle text-blue-500 mr-3"></i> Dedicated "Show USA Only" toggle</li>
-                    <li class="flex items-center text-slate-200"><i class="fas fa-check-circle text-blue-500 mr-3"></i> High-accuracy domestic detection</li>
-                    <li class="flex items-center text-slate-200"><i class="fas fa-check-circle text-blue-500 mr-3"></i> Real-time confidence percentages</li>
-                </ul>
-                <a href="https://chromewebstore.google.com/detail/origin-scout-usa-edition/njnfidceigkhgldkcpomnpnliicmkaao" target="_blank" class="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-500 transition shadow-lg">
-                    <i class="fab fa-chrome mr-2"></i> Download USA Edition
-                </a>
+    <section id="features" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+            <div class="glass p-8 rounded-3xl">
+                <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-bullseye text-blue-400 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Precision Scoring</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Our engine analyzes listing metadata to provide a percentage-based reliability score for every detected origin.</p>
             </div>
-            <div class="flex-1 space-y-6">
-                <img src="USA only-1280x800.png" alt="USA Filter Interface" class="rounded-2xl shadow-2xl border border-slate-600">
-                <img src="amazon-1280x800.png" alt="Amazon Integration" class="rounded-2xl shadow-2xl border border-slate-600">
+            <div class="glass p-8 rounded-3xl">
+                <div class="w-12 h-12 bg-indigo-600/20 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-user-shield text-indigo-400 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Privacy First</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Processing happens locally on your device. We never track your browsing history or collect personal data.</p>
+            </div>
+            <div class="glass p-8 rounded-3xl">
+                <div class="w-12 h-12 bg-purple-600/20 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-globe text-purple-400 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Multi-Store Support</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Optimized for major global retailers. Instantly see source data on Amazon, Walmart, and Target.</p>
+            </div>
+        </div>
+
+        <div class="mt-20 max-w-4xl mx-auto text-center px-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">Unrivaled Detection Clarity</h2>
+            <div class="flex justify-center">
+                <img src="confidence level-1280x800.jpg" 
+                     alt="Confidence Level Display" 
+                     class="rounded-2xl shadow-2xl border border-white/10 w-full max-w-md md:max-w-2xl h-auto transition-all duration-300">
             </div>
         </div>
     </section>
 
-    <section id="confidence" class="py-24 bg-[#1a1f2e] border-y border-slate-700/50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-4xl font-bold mb-6 text-white">Precision in Detection</h2>
-                <p class="text-slate-300 text-lg">
-                    We don't just guess. Every origin detection is backed by our internal scoring engine.
-                </p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-8 rounded-2xl feature-card text-center">
-                    <div class="text-blue-500 text-3xl mb-6"><i class="fas fa-chart-line"></i></div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Data-Driven Accuracy</h3>
-                    <p class="text-slate-300 text-sm">Our engine analyzes product metadata to assign a specific percentage score to every country detection.</p>
-                </div>
-                <div class="p-8 rounded-2xl feature-card text-center">
-                    <div class="text-blue-500 text-3xl mb-6"><i class="fas fa-eye"></i></div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Visual Indicators</h3>
-                    <p class="text-slate-300 text-sm">Scores are displayed clearly on product badges, helping you make informed decisions at a glance.</p>
-                </div>
-                <div class="p-8 rounded-2xl feature-card text-center">
-                    <div class="text-blue-500 text-3xl mb-6"><i class="fas fa-handshake"></i></div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Transparent Sourcing</h3>
-                    <p class="text-slate-300 text-sm">The "Confidence Level" ensures total transparency regarding where your products originate.</p>
-                </div>
-            </div>
-            <div class="mt-12 flex justify-center">
-                <img src="confidence level-1280x800.png" alt="Confidence Level UI" class="rounded-2xl shadow-2xl border border-slate-600 max-w-2xl">
-            </div>
+    <section id="editions" class="py-24 px-6 bg-slate-900/50">
+        <div class="max-w-6xl mx-auto text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Choose Your Edition</h2>
+            <p class="text-slate-400">Tailored experiences for local and international shopping.</p>
         </div>
-    </section>
-
-    <section id="global" class="py-24 max-w-7xl mx-auto px-6">
-        <div class="flex flex-col md:flex-row-reverse gap-16 items-center">
-            <div class="flex-1">
-                <div class="inline-block bg-indigo-900/40 text-indigo-300 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-widest border border-indigo-700/50">Global Reach</div>
-                <h2 class="text-4xl font-bold mb-6 text-white">Origin Scout: Global Edition for Amazon</h2>
-                <p class="text-slate-300 text-lg mb-8 leading-relaxed">
-                    Shopping internationally on Amazon? The Global Edition provides origin insights across Europe, 
-                    Asia, and beyond, highlighting regional products on all Amazon marketplaces.
-                </p>
-                <div class="grid grid-cols-2 gap-4 mb-10 text-center">
-                    <div class="bg-slate-700/50 p-4 rounded-lg border border-slate-600">
-                        <i class="fas fa-globe-europe text-indigo-400 mb-2"></i>
-                        <p class="text-xs font-bold">Multi-Region</p>
+        
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="relative group">
+                <div class="absolute -inset-0.5 bg-gradient-to-b from-blue-500 to-transparent rounded-3xl opacity-20 group-hover:opacity-40 transition"></div>
+                <div class="relative glass p-8 md:p-10 rounded-3xl h-full flex flex-col">
+                    <div class="flex justify-between items-start mb-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">USA Edition</h3>
+                            <p class="text-blue-400 text-xs font-bold uppercase tracking-wider">Domestic Specialist</p>
+                        </div>
+                        <i class="fas fa-flag-usa text-2xl md:text-3xl text-slate-700"></i>
                     </div>
-                    <div class="bg-slate-700/50 p-4 rounded-lg border border-slate-600">
-                        <i class="fab fa-amazon text-indigo-400 mb-2"></i>
-                        <p class="text-xs font-bold">Amazon Focused</p>
-                    </div>
+                    <ul class="space-y-4 mb-10 flex-grow">
+                        <li class="flex items-center text-sm text-slate-300"><i class="fas fa-check text-blue-500 mr-3"></i> Highly accurate "Made in USA" detection</li>
+                        <li class="flex items-center text-sm text-slate-300"><i class="fas fa-check text-blue-500 mr-3"></i> Specific filters for domestic sourcing</li>
+                        <li class="flex items-center text-sm text-slate-300"><i class="fas fa-check text-blue-500 mr-3"></i> Support for major US marketplaces</li>
+                    </ul>
+                    <a href="#" class="w-full py-4 rounded-2xl bg-white text-slate-900 font-extrabold text-center hover:bg-blue-50 transition">
+                        Add to Chrome
+                    </a>
                 </div>
-                <a href="https://chromewebstore.google.com/detail/origin-scout-global-editi/pjpihnfhhinflgbghgnbhhaeldlobjcd" target="_blank" class="inline-block bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-indigo-500 transition shadow-lg">
-                    <i class="fab fa-chrome mr-2"></i> Download Global Edition for Amazon
-                </a>
             </div>
-            <div class="flex-1 grid grid-cols-2 gap-4">
-                <img src="UK-1280x800.png" alt="UK Results" class="rounded-xl shadow-lg border border-slate-600">
-                <img src="DE-1280x800.png" alt="Germany Results" class="rounded-xl shadow-lg border border-slate-600">
-                <img src="FR-1280x800.png" alt="France Results" class="rounded-xl shadow-lg border border-slate-600">
-                <img src="IN-1280x800.png" alt="Global Results" class="rounded-xl shadow-lg border border-slate-600">
+
+            <div class="relative group">
+                <div class="absolute -inset-0.5 bg-gradient-to-b from-indigo-500 to-transparent rounded-3xl opacity-20 group-hover:opacity-40 transition"></div>
+                <div class="relative glass p-8 md:p-10 rounded-3xl h-full flex flex-col border-indigo-500/30">
+                    <div class="flex justify-between items-start mb-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Global Edition</h3>
+                            <p class="text-indigo-400 text-xs font-bold uppercase tracking-wider">International Reach</p>
+                        </div>
+                        <i class="fas fa-earth-americas text-2xl md:text-3xl text-slate-700"></i>
+                    </div>
+                    <ul class="space-y-4 mb-10 flex-grow">
+                        <li class="flex items-center text-sm text-slate-300"><i class="fas fa-check text-indigo-500 mr-3"></i> Origin detection for over 50 countries</li>
+                        <li class="flex items-center text-sm text-slate-300"><i class="fas fa-check text-indigo-500 mr-3"></i> Built-in cross-border shipping alerts</li>
+                        <li class="flex items-center text-sm text-slate-300"><i class="fas fa-check text-indigo-500 mr-3"></i> Seamless international store support</li>
+                    </ul>
+                    <a href="#" class="w-full py-4 rounded-2xl bg-indigo-600 text-white font-extrabold text-center hover:bg-indigo-500 transition shadow-lg shadow-indigo-600/20">
+                        Add to Chrome
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="faq" class="py-24 bg-[#1a1f2e] border-t border-slate-700/50">
-        <div class="max-w-3xl mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16 text-white">Frequently Asked Questions</h2>
-            <div class="space-y-4">
-                <details class="group rounded-2xl p-6">
-                    <summary class="flex justify-between items-center font-bold text-lg cursor-pointer text-slate-100">
-                        How does Origin Scout determine the country?
-                        <span class="text-blue-500 group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down"></i></span>
-                    </summary>
-                    <p class="mt-4 text-slate-300 leading-relaxed">We analyze product descriptions, technical specifications, and seller metadata. Our scoring engine then assigns a "Confidence Level" based on the clarity and consistency of that data.</p>
-                </details>
-                <details class="group rounded-2xl p-6">
-                    <summary class="flex justify-between items-center font-bold text-lg cursor-pointer text-slate-100">
-                        Is my browsing data private?
-                        <span class="text-blue-500 group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down"></i></span>
-                    </summary>
-                    <p class="mt-4 text-slate-300 leading-relaxed">Yes. Origin Scout processes all product page data locally on your device. We do not track your identity or sell your browsing history.</p>
-                </details>
+    <footer class="py-16 px-6 border-t border-white/5 bg-[#0a1120]">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-2 mb-4">
+                    <img src="favico.png" alt="Logo" class="w-6 h-6 grayscale opacity-50">
+                    <span class="font-bold text-white tracking-tighter">ORIGIN SCOUT</span>
+                </div>
+                <p class="text-slate-500 text-xs md:text-sm">© 2026 Origin Scout. Promoting data transparency.</p>
             </div>
-        </div>
-    </section>
-
-    <footer class="py-16 bg-[#1f2535] text-slate-400 border-t border-slate-700/50">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-left">
-                <p class="font-bold text-white text-lg mb-2 tracking-tighter">ORIGIN SCOUT</p>
-                <p class="text-sm">Empowering consumers through data transparency.</p>
-            </div>
-            <div class="flex gap-8 text-sm">
-                <a href="privacy.html" class="hover:text-blue-400 transition">Privacy Policy</a>
-            </div>
-            <div class="text-sm">
-                © 2026 Origin Scout. All rights reserved.
+            <div class="flex gap-6 md:gap-8 flex-wrap justify-center">
+                <a href="privacy.html" class="text-slate-400 hover:text-white transition text-xs md:text-sm">Privacy Policy</a>
+                <a href="https://github.com" class="text-slate-400 hover:text-white transition text-xs md:text-sm">Source Code</a>
+                <a href="mailto:support@originscout.example" class="text-slate-400 hover:text-white transition text-xs md:text-sm">Support</a>
             </div>
         </div>
     </footer>
 
 </body>
-
 </html>
