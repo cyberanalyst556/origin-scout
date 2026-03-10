@@ -20,15 +20,62 @@
         details > summary::-webkit-details-marker { display: none; }
         
         .title-image-container { display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; margin-bottom: 2rem; }
-        
-        .title-image { width: 320px; height: auto; border-radius: 20px; }
+        .title-image { width: 320px; height: auto; border-radius: 20px; cursor: pointer; transition: transform 0.3s ease; }
         
         @media (max-width: 768px) {
             .title-image { width: 220px; }
         }
+
+        /* Magnification Styles */
+        .magnified {
+            position: fixed !important;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.1) !important;
+            z-index: 100;
+            max-width: 90vw !important;
+            max-height: 80vh !important;
+            box-shadow: 0 0 100px rgba(0,0,0,0.8);
+            cursor: zoom-out !important;
+            object-fit: contain;
+        }
+
+        @media (min-width: 1024px) {
+            .magnified { transform: translate(-50%, -50%) scale(1.2) !important; }
+        }
+
+        .overlay-active::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            z-index: 90;
+        }
+
+        #close-zoom {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 101;
+            display: none;
+            background: white;
+            color: black;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        img { cursor: zoom-in; transition: transform 0.3s ease-in-out; }
     </style>
 </head>
 <body class="antialiased">
+
+    <div id="close-zoom" onclick="closeMagnifier()"><i class="fas fa-times"></i></div>
 
     <nav class="flex justify-center items-center px-8 py-8 max-w-7xl mx-auto sticky top-0 bg-[#1f2535]/80 backdrop-blur-md z-50">
         <div class="flex gap-10">
@@ -42,7 +89,7 @@
     <header class="hero-gradient text-center py-32 px-4">
         <div class="max-w-5xl mx-auto flex flex-col items-center">
             <div class="title-image-container">
-                <img src="blurredpromo.png" alt="Transparency Magnifier and Cart" class="title-image shadow-1xl">
+                <img src="blurredpromo.png" alt="Branding" class="title-image shadow-1xl">
                 <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
                     Origin Scout - Shop with Transparency
                 </h1>
@@ -51,11 +98,6 @@
                 Instantly identify where products are made while you browse. Our extension surfaces 
                 origin data and confidence levels directly on your favorite shopping sites.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 mt-10">
-                <a href="#usa" class="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-500 transition shadow-lg shadow-blue-600/20">
-                    Explore Editions
-                </a>
-            </div>
         </div>
     </header>
 
@@ -68,51 +110,25 @@
                     Designed specifically for the domestic shopper. Effortlessly identify "Made in USA" 
                     products on major platforms like Amazon, Walmart, and Target.
                 </p>
-                <ul class="space-y-4 mb-10">
-                    <li class="flex items-center text-slate-200"><i class="fas fa-check-circle text-blue-500 mr-3"></i> Dedicated "Show USA Only" toggle</li>
-                    <li class="flex items-center text-slate-200"><i class="fas fa-check-circle text-blue-500 mr-3"></i> High-accuracy domestic detection</li>
-                    <li class="flex items-center text-slate-200"><i class="fas fa-check-circle text-blue-500 mr-3"></i> Real-time confidence percentages</li>
-                </ul>
                 <a href="https://chromewebstore.google.com/detail/origin-scout-usa-edition/njnfidceigkhgldkcpomnpnliicmkaao" target="_blank" class="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-500 transition shadow-lg">
                     <i class="fab fa-chrome mr-2"></i> Download USA Edition
                 </a>
             </div>
             <div class="flex-1 space-y-6">
-                <img src="USA only-1280x800.png" alt="USA Filter Interface" class="rounded-2xl shadow-2xl border border-slate-600">
+                <img src="USA only-1280x800.png" alt="USA Filter" class="rounded-2xl shadow-2xl border border-slate-600">
                 <img src="amazon-1280x800.png" alt="Amazon Integration" class="rounded-2xl shadow-2xl border border-slate-600">
             </div>
         </div>
     </section>
 
     <section id="confidence" class="py-24 bg-[#1a1f2e] border-y border-slate-700/50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="max-w-3xl mx-auto mb-16">
                 <h2 class="text-4xl font-bold mb-6 text-white">Precision in Detection</h2>
-                <p class="text-slate-300 text-lg">
-                    We don't just guess. Every origin detection is backed by our internal scoring engine.
-                </p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-8 rounded-2xl feature-card text-center">
-                    <div class="text-blue-500 text-3xl mb-6"><i class="fas fa-chart-line"></i></div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Data-Driven Accuracy</h3>
-                    <p class="text-slate-300 text-sm">Our engine analyzes product metadata to assign a specific percentage score to every country detection.</p>
-                </div>
-                <div class="p-8 rounded-2xl feature-card text-center">
-                    <div class="text-blue-500 text-3xl mb-6"><i class="fas fa-eye"></i></div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Visual Indicators</h3>
-                    <p class="text-slate-300 text-sm">Scores are displayed clearly on product badges, helping you make informed decisions at a glance.</p>
-                </div>
-                <div class="p-8 rounded-2xl feature-card text-center">
-                    <div class="text-blue-500 text-3xl mb-6"><i class="fas fa-handshake"></i></div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Transparent Sourcing</h3>
-                    <p class="text-slate-300 text-sm">The "Confidence Level" ensures total transparency regarding where your products originate.</p>
-                </div>
+                <p class="text-slate-300 text-lg">Every detection is backed by our internal scoring engine.</p>
             </div>
             <div class="mt-12 flex justify-center px-6 md:px-0">
-                <img src="confidence level-1280x800.png" 
-                     alt="Confidence Level UI" 
-                     class="rounded-2xl shadow-2xl border border-slate-600 w-full max-w-[90%] md:max-w-2xl h-auto transition-all duration-300">
+                <img src="confidence level-1280x800.png" alt="Confidence Level UI" class="rounded-2xl shadow-2xl border border-slate-600 w-full max-w-[90%] md:max-w-2xl h-auto">
             </div>
         </div>
     </section>
@@ -121,71 +137,61 @@
         <div class="flex flex-col md:flex-row-reverse gap-16 items-center">
             <div class="flex-1">
                 <div class="inline-block bg-indigo-900/40 text-indigo-300 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-widest border border-indigo-700/50">Global Reach</div>
-                <h2 class="text-4xl font-bold mb-6 text-white">Origin Scout: Global Edition for Amazon</h2>
-                <p class="text-slate-300 text-lg mb-8 leading-relaxed">
-                    Shopping internationally on Amazon? The Global Edition provides origin insights across Europe, 
-                    Asia, and beyond, highlighting regional products on all Amazon marketplaces.
-                </p>
-                <div class="grid grid-cols-2 gap-4 mb-10 text-center">
-                    <div class="bg-slate-700/50 p-4 rounded-lg border border-slate-600">
-                        <i class="fas fa-globe-europe text-indigo-400 mb-2"></i>
-                        <p class="text-xs font-bold">Multi-Region</p>
-                    </div>
-                    <div class="bg-slate-700/50 p-4 rounded-lg border border-slate-600">
-                        <i class="fab fa-amazon text-indigo-400 mb-2"></i>
-                        <p class="text-xs font-bold">Amazon Focused</p>
-                    </div>
-                </div>
+                <h2 class="text-4xl font-bold mb-6 text-white">Global Edition for Amazon</h2>
+                <p class="text-slate-300 text-lg mb-8 leading-relaxed">Shopping internationally? The Global Edition provides insights across Europe and Asia.</p>
                 <a href="https://chromewebstore.google.com/detail/origin-scout-global-editi/pjpihnfhhinflgbghgnbhhaeldlobjcd" target="_blank" class="inline-block bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-indigo-500 transition shadow-lg">
-                    <i class="fab fa-chrome mr-2"></i> Download Global Edition for Amazon
+                    <i class="fab fa-chrome mr-2"></i> Download Global Edition
                 </a>
             </div>
             <div class="flex-1 grid grid-cols-2 gap-4">
-                <img src="UK-1280x800.png" alt="UK Results" class="rounded-xl shadow-lg border border-slate-600">
-                <img src="DE-1280x800.png" alt="Germany Results" class="rounded-xl shadow-lg border border-slate-600">
-                <img src="FR-1280x800.png" alt="France Results" class="rounded-xl shadow-lg border border-slate-600">
-                <img src="IN-1280x800.png" alt="Global Results" class="rounded-xl shadow-lg border border-slate-600">
-            </div>
-        </div>
-    </section>
-
-    <section id="faq" class="py-24 bg-[#1a1f2e] border-t border-slate-700/50">
-        <div class="max-w-3xl mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16 text-white">Frequently Asked Questions</h2>
-            <div class="space-y-4">
-                <details class="group rounded-2xl p-6">
-                    <summary class="flex justify-between items-center font-bold text-lg cursor-pointer text-slate-100">
-                        How does Origin Scout determine the country?
-                        <span class="text-blue-500 group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down"></i></span>
-                    </summary>
-                    <p class="mt-4 text-slate-300 leading-relaxed">We analyze product descriptions, technical specifications, and seller metadata. Our scoring engine then assigns a "Confidence Level" based on the clarity and consistency of that data.</p>
-                </details>
-                <details class="group rounded-2xl p-6">
-                    <summary class="flex justify-between items-center font-bold text-lg cursor-pointer text-slate-100">
-                        Is my browsing data private?
-                        <span class="text-blue-500 group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down"></i></span>
-                    </summary>
-                    <p class="mt-4 text-slate-300 leading-relaxed">Yes. Origin Scout processes all product page data locally on your device. We do not track your identity or sell your browsing history.</p>
-                </details>
+                <img src="UK-1280x800.png" alt="UK" class="rounded-xl shadow-lg border border-slate-600">
+                <img src="DE-1280x800.png" alt="Germany" class="rounded-xl shadow-lg border border-slate-600">
+                <img src="FR-1280x800.png" alt="France" class="rounded-xl shadow-lg border border-slate-600">
+                <img src="IN-1280x800.png" alt="India" class="rounded-xl shadow-lg border border-slate-600">
             </div>
         </div>
     </section>
 
     <footer class="py-16 bg-[#1f2535] text-slate-400 border-t border-slate-700/50">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-left">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+            <div>
                 <p class="font-bold text-white text-lg mb-2 tracking-tighter uppercase">Origin Scout</p>
                 <p class="text-sm">Empowering consumers through data transparency.</p>
             </div>
             <div class="flex gap-8 text-sm">
                 <a href="privacy.html" class="hover:text-blue-400 transition">Privacy Policy</a>
             </div>
-            <div class="text-sm">
-                © 2026 Origin Scout. All rights reserved.
-            </div>
+            <p class="text-sm">© 2026 Origin Scout. All rights reserved.</p>
         </div>
     </footer>
 
+    <script>
+        const closeBtn = document.getElementById('close-zoom');
+
+        function closeMagnifier() {
+            document.querySelectorAll('.magnified').forEach(img => {
+                img.classList.remove('magnified');
+            });
+            document.body.classList.remove('overlay-active');
+            closeBtn.style.display = 'none';
+        }
+
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (img.classList.contains('magnified')) {
+                    closeMagnifier();
+                } else {
+                    document.querySelectorAll('.magnified').forEach(other => other.classList.remove('magnified'));
+                    img.classList.add('magnified');
+                    document.body.classList.add('overlay-active');
+                    closeBtn.style.display = 'flex';
+                }
+            });
+        });
+
+        document.addEventListener('click', closeMagnifier);
+    </script>
+
 </body>
 </html>
-
